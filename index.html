@@ -29,8 +29,43 @@
     <link rel="manifest" href="./manifest.webmanifest" />
     <link rel="stylesheet" type="text/css" href="./style.css" />
     <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@300&family=Playfair+Display&family=Roboto+Slab&display=swap" rel="stylesheet" />
+    <style>
+        .notification {
+            display: none; /* Hidden by default */
+            position: fixed;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: #f8d7da;
+            color: #721c24;
+            padding: 15px;
+            border: 1px solid #f5c6cb;
+            border-radius: 5px;
+            z-index: 1000;
+        }
+    </style>
   </head>
   <body>
+    <div id="mobile-notification" class="notification">
+        For a better experience, please switch to desktop view.
+        <button onclick="closeNotification()">Close</button>
+    </div>
+
+    <script>
+        function isMobileDevice() {
+            return /Mobi|Android/i.test(navigator.userAgent);
+        }
+
+        function closeNotification() {
+            document.getElementById('mobile-notification').style.display = 'none';
+        }
+
+        window.onload = function() {
+            if (isMobileDevice()) {
+                document.getElementById('mobile-notification').style.display = 'block';
+            }
+        }
+    </script>
     <canvas class="webgl"></canvas>
     <nav>
       <a class="logo" href="/portfolio/">
